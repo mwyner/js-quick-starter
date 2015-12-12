@@ -1,0 +1,6 @@
+node-inspector.log
+npm-debug.log
+node_modules/*
+dist/*
+!dist/*.html
+.DS_Store
