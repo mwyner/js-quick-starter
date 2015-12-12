@@ -24,6 +24,7 @@
     "jquery": "^2.1.4",
     "livereload": "^0.3.7",
     "lodash": "^3.10.1",
+    "minimist": "^1.2.0",
     "require-dir": "^0.3.0",
     "tiny-lr": "^0.2.1",
     "vinyl-buffer": "^1.0.0",

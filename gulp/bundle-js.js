@@ -15,10 +15,10 @@ var gulp        = require('gulp'),
 // BUNDLE JS (Browserify + Babel)
 // ==============================
 gulp.task('build-js', function() {
-  browserify('./src/app.js', { extensions: ['.js'], debug: true })
+  browserify('./src/main.js', { extensions: ['.js'], debug: true })
       .bundle()
       .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-      .pipe( stream('app.js') )
+      .pipe( stream('main.js') )
       .pipe( buffer() )
       //.pipe( uglify({ mangle: true }) ) // uncomment this line for production
       .pipe( size({ showFiles: true, pretty: true }) )
@@ -27,12 +27,12 @@ gulp.task('build-js', function() {
 
 gulp.task('watch-js', function() {
   var opts = _.assign({}, watchify.args, { extensions: ['.js'], debug: true });
-  var bundler = watchify( browserify('./src/app.js', opts) );
+  var bundler = watchify( browserify('./src/main.js', opts) );
 
   function rebundle() {
     return bundler.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe( stream('app.js') )
+        .pipe( stream('main.js') )
         .pipe( buffer() )
         //.pipe( uglify({ mangle: false }) ) // uncomment this line for production
         .pipe( size({ showFiles: true, pretty: true }) )
