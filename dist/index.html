@@ -4,12 +4,10 @@
 	<!-- HEAD | https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head -->
 	<head>
 		<meta charset="UTF-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Javascript Quick Start</title>
-    	<!-- Import Web Fonts from google | https://www.google.com/fonts -->
-    	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    	<!-- main css file -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
 
@@ -23,6 +21,11 @@
 			<a href="http://expressjs.com/en/starter/static-files.html">express</a>).
 		</p>
 
+		<!-- Top level DOM Element into which we will dynamically render content via JS -->
+		<div id="app-container"></div>
+
+		<!-- main js file | Application js generally goes at the bottom of the body to prevent blocking
+				initial page load with a large JS download -->
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
