@@ -22,14 +22,31 @@ $(function(){
 	    	type: 'POST',
 	    	data: dataObject,
 	     
-	     success: function(response) {
-	      console.dir('everything worked!');  
-	     },
-	     error: function(xhr, status, err) {
-	       console.dir(xhr, status, err);
-	     }
+			success: function(response) {
+				console.dir('everything worked!');  
+			},
+			error: function(xhr, status, err) {
+				console.dir(xhr, status, err);
+			}
 	   	});
 
 	};
 	$('#submit-user').on('click', clickHandler);
+	
+	var data;
+	var intervalID = window.setInterval(function() {
+		$.ajax({
+			url: '/api/get-users',
+			dataType: 'json',
+			type: 'GET',
+			
+			success: function(response) {
+				console.dir(response);
+				data = response;  
+			},
+			error: function(xhr, status, err) {
+				console.dir(xhr, status, err);
+			}
+		});	
+	}, 5000);	   
 });
