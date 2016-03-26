@@ -1,10 +1,11 @@
 "use strict";
 var $ = require('jquery');
+var template = require('./templates/user-lists.hbs');
+var template2 = require('./templates/user.hbs');
 
 // code inside this block only runs when the DOM is ready for manipulation
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
-$(function(){
-	
+$(document).ready(function() {	
 	var clickHandler = function(event){
 		event.preventDefault();
 
@@ -23,7 +24,11 @@ $(function(){
 	    	data: dataObject,
 	     
 			success: function(response) {
-				console.dir('everything worked!');  
+				console.dir(response);
+				$('#app-container').append(
+					template2(response[response.length - 1])
+				);  
+				
 			},
 			error: function(xhr, status, err) {
 				console.dir(xhr, status, err);
@@ -33,20 +38,19 @@ $(function(){
 	};
 	$('#submit-user').on('click', clickHandler);
 	
-	var data;
-	var intervalID = window.setInterval(function() {
-		$.ajax({
-			url: '/api/get-users',
-			dataType: 'json',
-			type: 'GET',
-			
-			success: function(response) {
-				console.dir(response);
-				data = response;  
-			},
-			error: function(xhr, status, err) {
-				console.dir(xhr, status, err);
-			}
-		});	
-	}, 5000);	   
+	var data = {};
+	$.ajax({
+		url: '/api/get-users',
+		dataType: 'json',
+		type: 'GET',
+		
+		success: function(response) {
+			console.dir(response);
+			data.users = response;
+			$('#app-container').html(template(data));  
+		},
+		error: function(xhr, status, err) {
+			console.dir(xhr, status, err);
+		}
+	});	
 });
